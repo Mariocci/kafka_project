@@ -1,9 +1,19 @@
-
+# IntelliJ IDEA
 .idea/
 *.iml
 out/
 
-target/
+# Gradle
+.gradle/
 build/
 
+# Gradle Wrapper logs
+gradle-app.setting
+
+# Cache
+**/hs_err_pid*
+**/replay_pid*
+
+# OS files
 .DS_Store
+Thumbs.db
