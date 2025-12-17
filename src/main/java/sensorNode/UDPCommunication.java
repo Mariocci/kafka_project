@@ -18,7 +18,7 @@ public class UDPCommunication {
     private InetAddress localHost;
     private final int port;
     private final ConcurrentHashMap<String, String> receivedData = new ConcurrentHashMap<>();
-    final Set<Pair<String, Integer>> acknowledgments = new HashSet<>();
+    final Set<Pair<String, Integer>> acknowledgments = ConcurrentHashMap.newKeySet();
 
     public UDPCommunication(int port, double lossRate, int averageDelay) throws SocketException {
         this.port = port;
@@ -55,7 +55,7 @@ public class UDPCommunication {
             }
         }
 
-        if (!acknowledgments.contains(message)) {
+        if (!acknowledgments.contains(Pair.of(message, port))) {
             System.out.println("Failed to send message after retries: " + message);
         } else {
             System.out.println("Acknowledgment received for message: " + message);

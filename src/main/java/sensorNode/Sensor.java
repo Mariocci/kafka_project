@@ -187,7 +187,7 @@ public class Sensor {
                     String message = new String(datagramPacket.getData(), 0, datagramPacket.getLength());
                     if (message.startsWith("ACK:")) {
                         String ackMessage = message.substring(4);
-                        udpComm.acknowledgments.add(Pair.of(ackMessage, port));
+                        udpComm.acknowledgments.add(Pair.of(ackMessage, datagramPacket.getPort()));
                     } else {
                         System.out.println("Data packet received: " + message);
                         udpComm.sendAcknowledgment(datagramPacket.getAddress(), datagramPacket.getPort(), message);
